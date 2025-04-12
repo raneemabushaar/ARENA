@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SportCard } from '@/components/sports/SportCard';
 import { EventCard } from '@/components/sports/EventCard';
@@ -26,7 +26,12 @@ export default function SportsScreen() {
           <SportCard
             key={sport.id}
             sport={sport}
-            onPress={() => router.push(`/sport/${sport.id}`)}
+            onPress={() =>
+              router.push({
+                pathname: '/sport/[id]',
+                params: { id: sport.id },
+              })
+            }
           />
         ))}
       </View>
@@ -39,7 +44,12 @@ export default function SportsScreen() {
               key={sport.id}
               sport={sport}
               date="March 15, 2024"
-              onPress={() => router.push(`/event/${sport.id}`)}
+              onPress={() =>
+                router.push({
+                  pathname: '/event/[id]',
+                  params: { id: sport.id },
+                })
+              }
             />
           ))}
         </ScrollView>
